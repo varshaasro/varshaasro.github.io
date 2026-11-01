@@ -1,0 +1,5 @@
+# app-ads.txt — authorized digital sellers for all apps published under this developer account.
+# Spec: https://iabtechlab.com/ads-txt/
+#
+# AdMob (Google) — covers every app registered under this AdMob account.
+google.com, pub-4050010319814164, DIRECT, f08c47fec0942fa0
