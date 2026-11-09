@@ -11,6 +11,10 @@ repo (no app source code) so the same files can serve every app via GitHub's spe
 - **`backgammon/privacy-policy.html`** — Privacy policy for the BackGammon app
   ([varshaasro/PopularGames](https://github.com/varshaasro/PopularGames)). Each future app gets its
   own subfolder the same way.
+- **`backgammon/support.html`** — Support/FAQ page for BackGammon.
+- **`backgammon/delete-account.html`** — Account deletion instructions for BackGammon, linked from
+  Google Play Console's Data Safety section (and from the support FAQ) so a user can request
+  deletion without the app installed.
 
 Each app's "Developer Website" field (App Store Connect / Play Console) should point at
 `https://varshaasro.github.io` so ad-network crawlers find `app-ads.txt` here.
