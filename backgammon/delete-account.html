@@ -4,75 +4,219 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Delete Your Account — BackGammon</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap">
 <style>
-  :root { color-scheme: light dark; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 32px 20px 64px;
-    line-height: 1.6;
-    color: #1c1c1e;
+  :root {
+    color-scheme: light dark;
+    --bg: #F6EFE1;
+    --surface: #FFFFFF;
+    --fg: #2B2117;
+    --muted: #6B5D4C;
+    --accent: #73491E;
+    --accent-soft: #EADCC4;
+    --border: rgba(43, 33, 23, 0.12);
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-head: 'Space Grotesk', var(--font-body);
   }
   @media (prefers-color-scheme: dark) {
-    body { color: #f2f2f7; background: #000; }
-    a { color: #6ab0ff; }
+    :root {
+      --bg: #1C1710;
+      --surface: #2A2219;
+      --fg: #F1E9DA;
+      --muted: #B8A98F;
+      --accent: #D9A95C;
+      --accent-soft: #3A2E1E;
+      --border: rgba(241, 233, 218, 0.14);
+    }
   }
-  h1 { font-size: 1.6em; margin-bottom: 4px; }
-  .subtitle { color: #6e6e73; font-size: 0.9em; margin-bottom: 2em; }
-  h2 { font-size: 1.15em; margin-top: 2em; }
-  ol, ul { padding-left: 1.3em; }
-  li { margin-bottom: 0.5em; }
-  a { color: #0066cc; }
-  .contact { padding: 16px; border-radius: 10px; background: rgba(127,127,127,0.08); margin-top: 1em; }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    margin: 0;
+    padding: 48px 20px 64px;
+  }
+  main { max-width: 680px; margin: 0 auto; }
+  .mark {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+    width: 36px;
+    height: 36px;
+    margin-bottom: 20px;
+  }
+  .mark span { background: var(--accent); border-radius: 999px; }
+  h1 {
+    font-family: var(--font-head);
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 6px;
+  }
+  .subtitle { color: var(--muted); font-size: 0.92rem; margin: 0 0 32px; }
+  h2 {
+    font-family: var(--font-head);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .step-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--surface);
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin-bottom: 18px;
+  }
+  ol, ul { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 8px; }
+  ol li::marker { color: var(--accent); font-weight: 700; }
+  p { margin: 0 0 12px; }
+  p:last-child { margin-bottom: 0; }
+  .muted { color: var(--muted); font-size: 0.92rem; }
+  a { color: var(--accent); }
+
+  .email-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    background: var(--accent-soft);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin: 14px 0;
+  }
+  .email-row code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.95rem;
+    word-break: break-all;
+  }
+  button.copy {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--surface);
+    background: var(--accent);
+    border: none;
+    border-radius: 999px;
+    padding: 6px 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  button.copy:active { opacity: 0.85; }
+
+  footer {
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
 </style>
 </head>
 <body>
 
-<h1>Delete Your Account</h1>
-<p class="subtitle">BackGammon for iOS and Android</p>
+<main>
+  <div class="mark" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+  <h1>Delete Your Account</h1>
+  <p class="subtitle">BackGammon for iOS and Android</p>
 
-<p>
-  You can delete your BackGammon account and all associated data at any time, whether or not you
-  still have the app installed.
-</p>
+  <p style="margin-bottom:22px;">
+    You can delete your BackGammon account and all associated data at any time, whether or not you
+    still have the app installed.
+  </p>
 
-<h2>If you still have the app installed</h2>
-<ol>
-  <li>Open BackGammon and go to the <strong>Profile</strong> tab.</li>
-  <li>Scroll to the <strong>Account</strong> section and tap <strong>Delete Account</strong>.</li>
-  <li>Confirm the prompt. Your account and all associated data are deleted immediately.</li>
-</ol>
+  <section>
+    <h2><span class="step-badge">1</span>If you still have the app installed</h2>
+    <ol>
+      <li>Open BackGammon and go to the <strong>Profile</strong> tab.</li>
+      <li>Scroll to the <strong>Account</strong> section and tap <strong>Delete Account</strong>.</li>
+      <li>Confirm the prompt. Your account and all associated data are deleted immediately.</li>
+    </ol>
+  </section>
 
-<h2>If you no longer have the app installed</h2>
-<p>
-  Email us from the address you used with "Save Progress," if you set one up. Otherwise, include
-  your in-app display name and roughly when you signed up.
-</p>
-<div class="contact">
-  <strong>Email:</strong>
-  <a href="mailto:varshaasro@gmail.com">varshaasro@gmail.com</a>
-</div>
-<p>We'll delete your account and all associated data within 30 days of receiving your request.</p>
+  <section>
+    <h2><span class="step-badge">2</span>If you no longer have the app installed</h2>
+    <p>
+      Email us from the address you used with "Save Progress," if you set one up. Otherwise,
+      include your in-app display name and roughly when you signed up.
+    </p>
+    <div class="email-row">
+      <code id="email">varshaasro@gmail.com</code>
+      <button class="copy" id="copyBtn" type="button">Copy</button>
+    </div>
+    <p class="muted">We'll delete your account and all associated data within 30 days of receiving your request.</p>
+  </section>
 
-<h2>What this deletes</h2>
-<ul>
-  <li>Your profile: display name, level, XP, coin balance, and game statistics</li>
-  <li>Your streak history and monthly badges</li>
-  <li>Your saved email/password sign-in credential, if you set one up</li>
-  <li>Your authentication record</li>
-</ul>
+  <section>
+    <h2>What this deletes</h2>
+    <ul>
+      <li>Your profile: display name, level, XP, coin balance, and game statistics</li>
+      <li>Your streak history and monthly badges</li>
+      <li>Your saved email/password sign-in credential, if you set one up</li>
+      <li>Your authentication record</li>
+    </ul>
+  </section>
 
-<h2>What may be retained</h2>
-<ul>
-  <li>Anonymized or aggregated analytics data that can't be tied back to you</li>
-  <li>Records we're legally required to keep, such as for fraud prevention, kept no longer than necessary</li>
-</ul>
+  <section>
+    <h2>What may be retained</h2>
+    <ul>
+      <li>Anonymized or aggregated analytics data that can't be tied back to you</li>
+      <li>Records we're legally required to keep, such as for fraud prevention, kept no longer than necessary</li>
+    </ul>
+  </section>
 
-<p>
-  See our <a href="privacy-policy.html">Privacy Policy</a> for more on how BackGammon handles your
-  data.
-</p>
+  <footer>
+    See our <a href="privacy-policy.html">Privacy Policy</a> for more on how BackGammon handles your data.
+  </footer>
+</main>
+
+<script>
+  (function () {
+    var btn = document.getElementById('copyBtn');
+    var email = document.getElementById('email');
+    if (!btn || !email) return;
+    btn.addEventListener('click', function () {
+      var text = email.textContent.trim();
+      var done = function () {
+        var original = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function () { btn.textContent = original; }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(function () { selectText(email); });
+      } else {
+        selectText(email);
+      }
+    });
+    function selectText(node) {
+      try {
+        var range = document.createRange();
+        range.selectNodeContents(node);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+      } catch (e) {}
+    }
+  })();
+</script>
 
 </body>
 </html>
